@@ -7,7 +7,7 @@ const callback = (err, data) => {
         console.log(`>>> calling callback with data: `, data);
     }
 }
-function getTodos(callback) {
+function getTodos(id, callback) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && xhttp.status === 200) {
@@ -20,7 +20,8 @@ function getTodos(callback) {
             callback(`somthing wrong`, undefined);
         }
     };
-    xhttp.open("GET", "https://jsonplaceholder.typicode.com/todos", true);
+    xhttp.open("GET", `https://jsonplaceholder.typicode.com/todos/${id}`, true);
     xhttp.send();
 }
-getTodos(callback);
+getTodos(1, callback);
+getTodos(2, callback);
